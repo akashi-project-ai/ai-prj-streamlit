@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "bruh-dependencies"
+version = "0.0.1"
+description = "proyectos realizados por laboratorio"
+authors = ["FuhrerhLemon, HewelFo"]
+readme = "README.md"
+packages = [{include = "bruh_dependencies"}]
+
+[tool.poetry.dependencies]
+python = "^3.9.15"
+streamlit = "^1.13.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
