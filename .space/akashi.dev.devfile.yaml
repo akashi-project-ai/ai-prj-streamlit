@@ -1,0 +1,39 @@
+schemaVersion: 2.2.0
+metadata:
+  name: 'My custom dev env configuration for akashi'
+attributes:
+  space:
+    instanceType: large
+    editor:
+      type: Fleet
+      version: '2022.1'
+      updateChannel: EAP
+      vmoptions:
+      - '-Xms2048m'
+      - '-Xmx4096m'
+    requiredParameters:
+    - name: USERNAME
+      description: 'Space username'
+    requiredSecrets:
+    - name: PASSWORD
+      description: 'Space permanent token'
+    projectRoot: projects/my-project/MySolution.sln
+components:
+- name: akashi-portafolio-dev
+  container:
+    image: mycompany.registry.jetbrains.space/p/crl/container/my-dev-image:27
+    env:
+      - name: API_URL
+        value: 'https://my-site/http_api'
+      - name: PATH_IMG
+        value: './img/'
+  imageName: my-image:latest
+  dockerfile:
+    # (Optional) path to Docker context relative to projectRoot
+    # by default, projectRoot is repository root
+    buildContext: docker
+    # (Required) path to Dockerfile relative to projectRoot
+    uri: docker/Dockerfile
+    args:
+    - 'ARG1=A'
+    - 'ARG2=B'
